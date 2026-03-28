@@ -30,11 +30,3 @@ config.ini
 secrets.json
 ```
 
-**G. Create a `requirements.txt`** for your Python libraries
-```
-boto3==1.34.0
-snowflake-connector-python==3.6.0
-pandas==2.1.0
-scikit-learn==1.3.0
-python-dotenv==1.0.0
-jupyter==1.0.0
