@@ -16,13 +16,13 @@
 
 ```mermaid
 graph TD
-    Raw[Raw data (CSV/JSON)] --> Python[Python ingestion scripts]
-    Python --> S3[AWS S3 bucket]
-    S3 --> SnowflakeRAW[Snowflake RAW load]
-    SnowflakeRAW --> Silver[ETL_DB.STAGING (silver)]
-    Silver --> Gold[ETL_DB.ANALYTICS (gold)]
-    Gold --> Export[CSV export for Power BI]
-    Gold --> PowerBI[Power BI direct query]
+    Raw["Raw data (CSV/JSON)"] --> Python["Python ingestion scripts"]
+    Python --> S3["AWS S3 bucket"]
+    S3 --> SnowflakeRAW["Snowflake RAW load"]
+    SnowflakeRAW --> Silver["ETL_DB.STAGING (silver)"]
+    Silver --> Gold["ETL_DB.ANALYTICS (gold)"]
+    Gold --> Export["CSV export for Power BI"]
+    Gold --> PowerBI["Power BI direct query"]
 ```
 
 > Important: GitHub Mermaid rendering must be enabled in repository settings (Settings > Pages > Enable "Allow mermaid charts"). If Mermaid is not available, use the ASCII fallback below:
