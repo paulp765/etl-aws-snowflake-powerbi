@@ -16,29 +16,18 @@
 
 ```mermaid
 flowchart LR
-  A[Local raw data (CSV/JSON in data/raw)] --> B[Python ingestion scripts]
-  B --> C[S3: raw data bucket]
-  C --> D[Snowflake staging load (ETL_DB.RAW)]
-  D --> E[Silver layer: ETL_DB.STAGING]
-  E --> F[Gold layer: ETL_DB.ANALYTICS]
-  F --> G[CSV export for Power BI (dashboard/data)]
-  F --> H[Direct Power BI connection to Snowflake]
-
-  subgraph Python
-    B
-  end
-
-  subgraph "Snowflake SQL"
-    D
-    E
-    F
-  end
-
-  style A fill:#f2f7fb,stroke:#0b6cff
-  style C fill:#e8f4fd,stroke:#0b6cff
-  style E fill:#fff4cc,stroke:#f2b004
-  style F fill:#ddf7dc,stroke:#269b28
+    A[Local raw data (CSV/JSON)] --> B[Python ingestion scripts]
+    B --> C[AWS S3 bucket]
+    C --> D[Snowflake RAW load]
+    D --> E[ETL_DB.STAGING (silver)]
+    E --> F[ETL_DB.ANALYTICS (gold)]
+    F --> G[CSV export for Power BI]
+    F --> H[Power BI direct query]
 ```
+
+> Note: GitHub markdown requires Mermaid support turned on in repo settings or GitHub Preview for diagrams to render.
+
+### Workflow details
 
 ### Workflow details
 
