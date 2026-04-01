@@ -12,12 +12,49 @@
 
 ## 2. Architecture / Workflow
 
-1. **Source ingestion**: local CSV/JSON raw files stored in `data/raw/`.
-2. **Upload to S3**: scripts upload raw files to AWS S3 using `boto3`.
-3. **Staging (Silver)**: Snowflake SQL (`06_silver_sales.sql`, `07_silver_customers.sql`) cleans and de-duplicates into `ETL_DB.STAGING`.
-4. **Transformation (Gold)**: Snowflake SQL (`08_gold_fact_sales.sql`, `09_gold_aggregations.sql`) builds `ETL_DB.ANALYTICS` tables.
-5. **Export**: `export_for_powerbi.py` reads Snowflake tables and writes CSV outputs for Power BI.
-6. **Consumption**: Power BI dashboards load the CSV files or connect directly to Snowflake.
+### Architecture diagram
+
+```mermaid
+flowchart LR
+  A[Local raw data (CSV/JSON in data/raw)] --> B[Python ingestion scripts]
+  B --> C[S3: raw data bucket]
+  C --> D[Snowflake staging load (ETL_DB.RAW)]
+  D --> E[Silver layer: ETL_DB.STAGING]
+  E --> F[Gold layer: ETL_DB.ANALYTICS]
+  F --> G[CSV export for Power BI (dashboard/data)]
+  F --> H[Direct Power BI connection to Snowflake]
+
+  subgraph Python
+    B
+  end
+
+  subgraph "Snowflake SQL"
+    D
+    E
+    F
+  end
+
+  style A fill:#f2f7fb,stroke:#0b6cff
+  style C fill:#e8f4fd,stroke:#0b6cff
+  style E fill:#fff4cc,stroke:#f2b004
+  style F fill:#ddf7dc,stroke:#269b28
+```
+
+### Workflow details
+
+1. **Source ingestion**: store raw CSV/JSON in `data/raw/` and keep invalid for audit.
+2. **Upload to S3**: use `scripts/upload_to_s3.py` for secure upload to `S3_BUCKET_NAME`.
+3. **Snowflake staging load**: load raw data into `ETL_DB.RAW` via bulk COPY or manual ingestion scripts.
+4. **Silver transformations**: run `run_transformations.py` which executes:
+   - `06_silver_sales.sql` → `ETL_DB.STAGING.STG_SALES`
+   - `07_silver_customers.sql` → `ETL_DB.STAGING.STG_CUSTOMERS`
+
+5. **Gold transformations**:
+   - `08_gold_fact_sales.sql` → `ETL_DB.ANALYTICS.FACT_SALES`
+   - `09_gold_aggregations.sql` → summary tables: `MONTHLY_REVENUE`, `PRODUCT_PERFORMANCE`, etc.
+
+6. **Export for BI**: `scripts/export_for_powerbi.py` pulls gold tables to CSV in `dashboard/data`.
+7. **Power BI consumption**: connect to generated CSV or directly to Snowflake for live analytics.
 
 ---
 
@@ -171,9 +208,9 @@ _Add screenshot placeholders:_
 
 ## 13. Author
 
-- **Priyanka** (or your name)
+- **Priyanka Paul**
 - Data Engineer | Analytics Engineer
-- LinkedIn: `https://www.linkedin.com/in/<your-profile>`
+- LinkedIn: https://www.linkedin.com/in/priyanka-paul-11143318b
 
 ---
 
