@@ -16,13 +16,13 @@
 
 ```mermaid
 flowchart LR
-    A[Local raw data (CSV/JSON)] --> B[Python ingestion scripts]
-    B --> C[AWS S3 bucket]
-    C --> D[Snowflake RAW load]
-    D --> E[ETL_DB.STAGING (silver)]
-    E --> F[ETL_DB.ANALYTICS (gold)]
-    F --> G[CSV export for Power BI]
-    F --> H[Power BI direct query]
+    A["Local raw data (CSV/JSON)"] --> B["Python ingestion scripts"]
+    B --> C["AWS S3 bucket"]
+    C --> D["Snowflake RAW load"]
+    D --> E["ETL_DB.STAGING (silver)"]
+    E --> F["ETL_DB.ANALYTICS (gold)"]
+    F --> G["CSV export for Power BI"]
+    F --> H["Power BI direct query"]
 ```
 
 > Note: GitHub markdown requires Mermaid support turned on in repo settings or GitHub Preview for diagrams to render.
