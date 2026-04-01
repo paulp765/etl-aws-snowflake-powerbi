@@ -208,9 +208,9 @@ _Add screenshot placeholders:_
 
 ## 13. Author
 
-- **Priyanka** (or your name)
+- **Priyanka Paul**
 - Data Engineer | Analytics Engineer
-- LinkedIn: `https://www.linkedin.com/in/priyanka-paul-11143318b
+- LinkedIn: https://www.linkedin.com/in/priyanka-paul-11143318b
 
 ---
 
