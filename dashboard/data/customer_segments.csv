@@ -1,0 +1,10 @@
+customer_segment,loyalty_tier,tenure_band,total_customers,total_orders,total_revenue,avg_order_value,revenue_per_customer
+Occasional,Silver,Loyal,17,87,7238646.5,83202.83,425802.74
+Regular,Silver,Loyal,13,71,5526804.5,77842.32,425138.81
+Premium,Gold,Loyal,11,65,5040361.0,77544.02,458214.64
+Premium,Silver,Loyal,12,58,4468283.5,77039.37,372356.96
+Occasional,Gold,Loyal,15,80,4235504.5,52943.81,282366.97
+Premium,Bronze,Loyal,10,40,2202739.0,55068.48,220273.9
+Regular,Gold,Loyal,8,39,2135271.0,54750.54,266908.88
+Regular,Bronze,Loyal,5,26,1302315.5,50089.06,260463.1
+Occasional,Bronze,Loyal,9,34,1289418.0,37924.06,143268.67
