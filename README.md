@@ -15,17 +15,27 @@
 ### Architecture diagram
 
 ```mermaid
-flowchart LR
-    A[Local raw data (CSV/JSON)] --> B[Python ingestion scripts]
-    B --> C[AWS S3 bucket]
-    C --> D[Snowflake RAW load]
-    D --> E[ETL_DB.STAGING (silver)]
-    E --> F[ETL_DB.ANALYTICS (gold)]
-    F --> G[CSV export for Power BI]
-    F --> H[Power BI direct query]
+graph TD
+    Raw[Raw data (CSV/JSON)] --> Python[Python ingestion scripts]
+    Python --> S3[AWS S3 bucket]
+    S3 --> SnowflakeRAW[Snowflake RAW load]
+    SnowflakeRAW --> Silver[ETL_DB.STAGING (silver)]
+    Silver --> Gold[ETL_DB.ANALYTICS (gold)]
+    Gold --> Export[CSV export for Power BI]
+    Gold --> PowerBI[Power BI direct query]
 ```
 
-> Note: GitHub markdown requires Mermaid support turned on in repo settings or GitHub Preview for diagrams to render.
+> Important: GitHub Mermaid rendering must be enabled in repository settings (Settings > Pages > Enable "Allow mermaid charts"). If Mermaid is not available, use the ASCII fallback below:
+
+```
+Raw (CSV/JSON) --> Python
+Python --> AWS S3
+AWS S3 --> Snowflake RAW
+Snowflake RAW --> ETL_DB.STAGING (silver)
+ETL_DB.STAGING --> ETL_DB.ANALYTICS (gold)
+ETL_DB.ANALYTICS --> CSV export for Power BI
+ETL_DB.ANALYTICS --> Power BI direct query
+```
 
 ### Workflow details
 
