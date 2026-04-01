@@ -210,7 +210,7 @@ _Add screenshot placeholders:_
 
 - **Priyanka** (or your name)
 - Data Engineer | Analytics Engineer
-- LinkedIn: `https://www.linkedin.com/in/<your-profile>`
+- LinkedIn: `https://www.linkedin.com/in/priyanka-paul-11143318b
 
 ---
 
